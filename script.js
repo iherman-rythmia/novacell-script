@@ -3,6 +3,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 const lead_id = urlParams.get('lead_id');
+const client_id = urlParams.get('client_id');
 const first_name = urlParams.get('first_name');
 const last_name = urlParams.get('last_name');
 const email = urlParams.get('email');
@@ -48,12 +49,12 @@ function processSubmit(){
         "email": email
     };
     
-    sendInvoice(choice, billing_info, lead_id, promo);
+    sendInvoice(choice, billing_info, lead_id, client_id, promo);
     
 }
 
 
-async function sendInvoice(choice, billing_info, lead_id, promo){
+async function sendInvoice(choice, billing_info, lead_id, client_id, promo){
     const obj = choice.split(',');
     const line_item = parseInt(obj[1]+obj[2]);
 
@@ -79,6 +80,7 @@ async function sendInvoice(choice, billing_info, lead_id, promo){
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 "customer_id":lead_id,
+                "client_id": client_id,
                 "billing_address":billing_info,
                 "items": items,
                 "amount":amount,
