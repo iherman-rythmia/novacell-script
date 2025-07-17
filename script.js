@@ -77,7 +77,7 @@ async function sendInvoice(choice, billing_info, lead_id, client_id, promo){
         const res = await fetch("https://fluidpay-test-api.azurewebsites.net/api/sendInvoice",
         {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json","x-functions-key":"GAqDeVdizR3Si0JfM_9FS6-wqxBHCn_qyevygMuSKr4oAzFud3sSTw=="},
             body: JSON.stringify({
                 "customer_id":lead_id,
                 "client_id": client_id,
